@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import StyledHeader from "./components/Header";
+import Footer from "./components/Footer";
+import PlantList from "./components/PlantList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import styled from "styled-components";
 
-export default App;
+const App = ({className}) => (
+  <Container className={className}>
+    <Row>
+      <Col>
+        <StyledHeader />
+      </Col>
+    </Row>
+
+    <Row>
+      <PlantList />
+    </Row>
+
+    <Row>
+      <Col>
+        <Footer />
+      </Col>
+    </Row>
+  </Container>
+);
+
+const StyledApp = styled(App)`
+  box-shadow: 0px 0px 5px gray;
+  padding: 10px;
+`;
+
+export default StyledApp;
