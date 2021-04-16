@@ -30,7 +30,7 @@ const createPlant = (req, res) => {
 // PUT Handler
 const updatePlant = (req, res) => {
   const plant_id = parseInt(req.params.plant_id);
-  const {name, description, price, image, plant_id} = req.body;
+  const {name, description, price, image} = req.body;
 
   pool.query(
     "UPDATE plant SET name = $1, description = $2, price = $3, image = $4 WHERE id = $5",
