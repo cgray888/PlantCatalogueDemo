@@ -1,4 +1,4 @@
-const Pool = require("pg").Pool;
+const pool = require("../db");
 
 // GET Request Handler
 const getAllPlants = (req, res) => {

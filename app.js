@@ -1,10 +1,8 @@
 require("dotenv").config();
-require("./db");
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 const cors = require("cors");
-const pool = require("./db");
 const rateLimit = require("express-rate-limit");
 
 const apiRouter = require("./routes/api_router");
