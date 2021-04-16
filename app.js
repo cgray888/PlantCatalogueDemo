@@ -1,13 +1,17 @@
 require("dotenv").config();
-var express = require("express");
-var path = require("path");
-var logger = require("morgan");
+require("./db");
+const express = require("express");
+const path = require("path");
+const logger = require("morgan");
 const cors = require("cors");
-
-const apiRouter = require("./routes/api_router");
+const pool = require("./db");
 const rateLimit = require("express-rate-limit");
 
-var app = express();
+const apiRouter = require("./routes/api_router");
+
+const PORT = process.env.PORT || 5000;
+
+const app = express();
 
 // middleware
 app.use(logger("dev"));
@@ -26,5 +30,9 @@ if (process.env.NODE_ENV === "production") {
 
 // routing
 app.use("/", apiRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server has started on port ${PORT}`);
+});
 
 module.exports = app;
