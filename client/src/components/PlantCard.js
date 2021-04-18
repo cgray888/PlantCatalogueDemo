@@ -17,28 +17,30 @@ const handlePlantDelete = (id) => {
 
 const PlantCard = (props) => {
   return (
-    <Card>
-      <Card.Img src={props.image}></Card.Img>
-      <Card.Body>
-        <Card.Title>
-          {props.name} - ${props.price}
-        </Card.Title>
-        <Card.Text>{props.description}</Card.Text>
-      </Card.Body>
-      <Form>
-        <Button variant='warning' size='sm'>
-          Edit
-        </Button>
-        <Button
-          variant='danger'
-          size='sm'
-          type='submit'
-          onClick={() => handlePlantDelete(props.plant_id)}
-        >
-          Delete
-        </Button>
-      </Form>
-    </Card>
+    <Form>
+      <Card>
+        <Card.Img src={props.image}></Card.Img>
+        <Card.Body>
+          <Card.Title>
+            {props.name} - ${props.price}
+          </Card.Title>
+          <Card.Text>{props.description}</Card.Text>
+        </Card.Body>
+        <Card.Text>
+          <Button variant='warning' size='sm'>
+            Edit
+          </Button>
+          <Button
+            variant='danger'
+            size='sm'
+            type='submit'
+            onClick={() => handlePlantDelete(props.plant_id)}
+          >
+            Delete
+          </Button>
+        </Card.Text>
+      </Card>
+    </Form>
   );
 };
 

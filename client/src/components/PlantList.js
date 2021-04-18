@@ -14,8 +14,6 @@ const PlantList = () => {
       try {
         const response = await ky("/plants").json();
         setPlants(response);
-        // test
-        console.log(response);
       } catch (error) {
         console.error("API GET Error: " + error);
       }

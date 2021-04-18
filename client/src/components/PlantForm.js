@@ -12,14 +12,20 @@ const PlantForm = () => {
   const [plantImage, setPlantImage] = useState("");
 
   const handlePlantFormSubmit = (values) => {
-    console.log(values);
-    // (async () => {
-    //   try {
-    //     await ky.post("/plants", {json: values});
-    //   } catch (error) {
-    //     console.error("Post error: " + error);
-    //   }
-    // })();
+    (async () => {
+      try {
+        await ky.post("/plants", {
+          json: {
+            name: values[0],
+            description: values[1],
+            price: values[2],
+            image: values[3],
+          },
+        });
+      } catch (error) {
+        console.error("Post error: " + error);
+      }
+    })();
   };
 
   return (
@@ -60,6 +66,7 @@ const PlantForm = () => {
         </Form.Row>
         <Button
           size='sm'
+          type='submit'
           onClick={() =>
             handlePlantFormSubmit([
               plantName,
