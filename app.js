@@ -29,8 +29,4 @@ if (process.env.NODE_ENV === "production") {
 // routing
 app.use("/", apiRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server has started on port ${PORT}`);
-});
-
 module.exports = app;
