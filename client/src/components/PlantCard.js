@@ -1,10 +1,21 @@
 import React from "react";
+import ky from "ky";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+const handlePlantDelete = (id) => {
+  (async () => {
+    try {
+      await ky.delete(`/plants/${id}`);
+    } catch (error) {
+      console.error("Delete error: " + error);
+    }
+  })();
+};
 
 const PlantCard = (props) => {
-  console.log({props});
   return (
     <Card>
       <Card.Img src={props.image}></Card.Img>
@@ -14,14 +25,19 @@ const PlantCard = (props) => {
         </Card.Title>
         <Card.Text>{props.description}</Card.Text>
       </Card.Body>
-      <Card.Text>
+      <Form>
         <Button variant='warning' size='sm'>
           Edit
         </Button>
-        <Button variant='danger' size='sm'>
+        <Button
+          variant='danger'
+          size='sm'
+          type='submit'
+          onClick={() => handlePlantDelete(props.plant_id)}
+        >
           Delete
         </Button>
-      </Card.Text>
+      </Form>
     </Card>
   );
 };

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import ky from "ky";
 
 import Form from "react-bootstrap/Form";
@@ -6,41 +6,71 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 const PlantForm = () => {
-  //   const [plants, setPlants] = useState([]);
+  const [plantName, setPlantName] = useState("");
+  const [plantDescription, setPlantDescription] = useState("");
+  const [plantPrice, setPlantPrice] = useState("");
+  const [plantImage, setPlantImage] = useState("");
 
-  //   useEffect(() => {
-  //     (async () => {
-  //       try {
-  //         const response = await ky("/plants").json();
-  //         setPlants(response);
-  //         // test
-  //         console.log(response);
-  //       } catch (error) {
-  //         console.error("API GET Error: " + error);
-  //       }
-  //     })();
-  //   }, []);
+  const handlePlantFormSubmit = (values) => {
+    console.log(values);
+    // (async () => {
+    //   try {
+    //     await ky.post("/plants", {json: values});
+    //   } catch (error) {
+    //     console.error("Post error: " + error);
+    //   }
+    // })();
+  };
 
   return (
-    <Form>
+    <Form noValidate>
       <Form.Group>
         <Form.Row>
           <Col>
-            <Form.Control placeholder='Name' />
+            <Form.Control
+              placeholder='Name'
+              value={plantName}
+              type='text'
+              onChange={(e) => setPlantName(e.target.value)}
+            />
           </Col>
           <Col>
-            <Form.Control placeholder='Description' />
+            <Form.Control
+              placeholder='Description'
+              value={plantDescription}
+              onChange={(e) => setPlantDescription(e.target.value)}
+            />
           </Col>
         </Form.Row>
         <Form.Row>
           <Col>
-            <Form.Control placeholder='Price' />
+            <Form.Control
+              placeholder='Price'
+              value={plantPrice}
+              onChange={(e) => setPlantPrice(e.target.value)}
+            />
           </Col>
           <Col>
-            <Form.Control placeholder='Image' />
+            <Form.Control
+              placeholder='Image'
+              value={plantImage}
+              onChange={(e) => setPlantImage(e.target.value)}
+            />
           </Col>
         </Form.Row>
-        <Button size='sm'>Submit</Button>
+        <Button
+          size='sm'
+          onClick={() =>
+            handlePlantFormSubmit([
+              plantName,
+              plantDescription,
+              plantPrice,
+              plantImage,
+            ])
+          }
+        >
+          Submit
+        </Button>
       </Form.Group>
     </Form>
   );

@@ -69,7 +69,7 @@ const deletePlant = (req, res) => {
       if (error) {
         res.status(400).send("Bad Request");
       }
-      res.status(200).send(`Plant deleted with ID: ${id}`);
+      res.status(200).send(`Plant deleted with ID: ${plant_id}`);
     },
   );
 };

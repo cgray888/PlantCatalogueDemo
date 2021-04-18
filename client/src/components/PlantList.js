@@ -27,6 +27,7 @@ const PlantList = () => {
       <Col sm='12' md='3'>
         <PlantCard
           key={item.plant_id}
+          plant_id={item.plant_id}
           image={item.image}
           name={item.name}
           description={item.description}
