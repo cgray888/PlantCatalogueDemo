@@ -10,6 +10,20 @@ const getAllPlants = (req, res) => {
   });
 };
 
+// // GET Request Handler
+// const getAllPlants = (req, res) => {
+//     (async () => {
+//       try {
+//         const result = await pool.query(
+//           "SELECT * FROM plant ORDER BY plant_id ASC",
+//         );
+//         res.status(200).json(result.rows);
+//       } catch (error) {
+//         res.status(400).send("Bad Request");
+//       }
+//     })();
+//   };
+
 // POST Request Handler
 const createPlant = (req, res) => {
   const {name, description, price, image} = req.body;
