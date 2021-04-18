@@ -4,6 +4,7 @@ const pool = require("../db");
 const getAllPlants = (req, res) => {
   pool.query("SELECT * FROM plant ORDER BY plant_id ASC", (error, results) => {
     if (error) {
+      console.log(error);
       res.status(400).send("Bad Request");
     }
     res.status(200).json(results.rows);
