@@ -11,20 +11,6 @@ const getAllPlants = (req, res) => {
   });
 };
 
-// // GET Request Handler
-// const getAllPlants = (req, res) => {
-//     (async () => {
-//       try {
-//         const result = await pool.query(
-//           "SELECT * FROM plant ORDER BY plant_id ASC",
-//         );
-//         res.status(200).json(result.rows);
-//       } catch (error) {
-//         res.status(400).send("Bad Request");
-//       }
-//     })();
-//   };
-
 // POST Request Handler
 const createPlant = (req, res) => {
   const {name, description, price, image} = req.body;
@@ -33,11 +19,10 @@ const createPlant = (req, res) => {
     [name, description, price, image],
     (error, results) => {
       if (error) {
+        console.log(error);
         res.status(400).send("Bad Request");
       }
-      res
-        .status(201)
-        .send(`A new plant has been added added: ${results.rows[0]}`);
+      res.status(201).send(`A new plant has been added added: ${results.rows}`);
     },
   );
 };
@@ -52,9 +37,10 @@ const updatePlant = (req, res) => {
     [name, description, price, image, plant_id],
     (error, results) => {
       if (error) {
+        console.log(error);
         res.status(400).send("Bad Request");
       }
-      res.status(200).send(`Plant modified with ID: ${id}`);
+      res.status(200).send(`Plant modified with ID: ${plant_id}`);
     },
   );
 };
@@ -67,9 +53,10 @@ const deletePlant = (req, res) => {
     [plant_id],
     (error, results) => {
       if (error) {
+        console.log(error);
         res.status(400).send("Bad Request");
       }
-      res.status(200).send(`Plant deleted with ID: ${id}`);
+      res.status(200).send(`Plant deleted with ID: ${plant_id}`);
     },
   );
 };

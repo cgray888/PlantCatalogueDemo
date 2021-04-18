@@ -14,8 +14,6 @@ const PlantList = () => {
       try {
         const response = await ky("/plants").json();
         setPlants(response);
-        // test
-        console.log(response);
       } catch (error) {
         console.error("API GET Error: " + error);
       }
@@ -27,6 +25,7 @@ const PlantList = () => {
       <Col sm='12' md='3'>
         <PlantCard
           key={item.plant_id}
+          plant_id={item.plant_id}
           image={item.image}
           name={item.name}
           description={item.description}
