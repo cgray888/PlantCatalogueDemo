@@ -4,27 +4,13 @@ import Footer from "./components/Footer";
 import PlantList from "./components/PlantList";
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import styled from "styled-components";
 
 const App = ({className}) => (
   <Container className={className}>
-    <Row>
-      <Col>
-        <StyledHeader />
-      </Col>
-    </Row>
-
-    <Row>
-      <PlantList />
-    </Row>
-
-    <Row>
-      <Col>
-        <Footer />
-      </Col>
-    </Row>
+    <StyledHeader />
+    <PlantList />
+    <Footer />
   </Container>
 );
 
