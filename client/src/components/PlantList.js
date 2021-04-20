@@ -39,7 +39,7 @@ const PlantList = () => {
     <Fragment>
       <Row>
         <Col sm='12'>
-          <PlantForm />
+          <PlantForm props={plants} />
         </Col>
       </Row>
       <Row>

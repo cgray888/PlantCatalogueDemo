@@ -1,5 +1,7 @@
 import React from "react";
 
+import Banner from "../resources/banner.png";
+
 import styled from "styled-components";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Row from "react-bootstrap/Row";
@@ -8,7 +10,10 @@ import Col from "react-bootstrap/Col";
 const Header = ({className}) => (
   <Row>
     <Col>
-      <Jumbotron className={className}>
+      <Jumbotron
+        style={{backgroundImage: `url(${Banner})`, backgroundSize: "cover"}}
+        className={className}
+      >
         <h1>Plant Catalogue</h1>
       </Jumbotron>
     </Col>
@@ -16,7 +21,6 @@ const Header = ({className}) => (
 );
 
 const StyledHeader = styled(Header)`
-  background-color: LightGreen;
   text-align: center;
 `;
 
