@@ -33,7 +33,7 @@ const updatePlant = (req, res) => {
   const {name, description, price, image} = req.body;
 
   pool.query(
-    "UPDATE plant SET name = $1, description = $2, price = $3, image = $4 WHERE id = $5",
+    "UPDATE plant SET name = $1, description = $2, price = $3, image = $4 WHERE plant_id = $5",
     [name, description, price, image, plant_id],
     (error, results) => {
       if (error) {
