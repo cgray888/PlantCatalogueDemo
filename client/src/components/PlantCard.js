@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 const PlantCard = (props) => {
-  const [newDescription, setNewDescription] = useState("");
+  const [newDescription, setNewDescription] = useState(props.description);
 
   const handlePlantDelete = (id) => {
     (async () => {
@@ -18,22 +18,22 @@ const PlantCard = (props) => {
     })();
   };
 
-  //   const handlePlantEdit = (values) => {
-  //     (async () => {
-  //       try {
-  //         await ky.put(`/plants/${values.id}}`, {
-  //           json: {
-  //             name: values.name,
-  //             description: newDescription,
-  //             price: values.price,
-  //             image: values.image,
-  //           },
-  //         });
-  //       } catch (error) {
-  //         console.error("Put error: " + error);
-  //       }
-  //     })();
-  //   };
+  const handlePlantEdit = (values) => {
+    (async () => {
+      try {
+        await ky.put(`/plants/${values.plant_id}`, {
+          json: {
+            name: values.name,
+            description: newDescription,
+            price: values.price,
+            image: values.image,
+          },
+        });
+      } catch (error) {
+        console.error("Put error: " + error);
+      }
+    })();
+  };
 
   return (
     <Form>
@@ -54,7 +54,7 @@ const PlantCard = (props) => {
           <Button
             variant='warning'
             size='sm'
-            //onClick={() => handlePlantEdit(props)}
+            onClick={() => handlePlantEdit(props)}
           >
             Edit
           </Button>
