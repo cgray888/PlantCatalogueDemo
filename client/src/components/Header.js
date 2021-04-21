@@ -11,7 +11,7 @@ const Header = ({className}) => (
   <Row>
     <Col>
       <Jumbotron
-        style={{backgroundImage: `url(${Banner})`, backgroundSize: "cover"}}
+        style={{backgroundImage: `url(${Banner})`, backgroundSize: "auto"}}
         className={className}
       >
         <h1>Plant Catalogue</h1>
