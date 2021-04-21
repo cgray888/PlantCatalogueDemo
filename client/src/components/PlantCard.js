@@ -1,74 +1,63 @@
-import React, {useState} from "react";
-import ky from "ky";
+import React, {useState, Fragment} from "react";
+import PlantInput from "./PlantInput";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 const PlantCard = (props) => {
-  const [newDescription, setNewDescription] = useState(props.description);
+  const [open, setOpen] = useState(false);
 
-  const handlePlantDelete = (id) => {
-    (async () => {
-      try {
-        await ky.delete(`/plants/${id}`);
-      } catch (error) {
-        console.error("Delete error: " + error);
-      }
-    })();
+  const handleDelete = (plant_id) => {
+    props.PlantListDeleteCallback(plant_id);
   };
 
-  const handlePlantEdit = (values) => {
-    (async () => {
-      try {
-        await ky.put(`/plants/${values.plant_id}`, {
-          json: {
-            name: values.name,
-            description: newDescription,
-            price: values.price,
-            image: values.image,
-          },
-        });
-      } catch (error) {
-        console.error("Put error: " + error);
-      }
-    })();
+  const PlantCardCallback = (values) => props.PlantListPutCallback(values);
+
+  const CardEditModal = (props) => {
+    return (
+      <Modal
+        {...props}
+        size='md'
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id='contained-modal-title-vcenter'>Edit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <PlantInput PlantFormCallback={PlantCardCallback} data={props.data} />
+        </Modal.Body>
+      </Modal>
+    );
   };
 
   return (
-    <Form>
+    <Fragment>
       <Card>
         <Card.Img src={props.image}></Card.Img>
         <Card.Body>
           <Card.Title>
             {props.name} - ${props.price}
           </Card.Title>
-          <Card.Text>
-            <Form.Control
-              defaultValue={props.description}
-              onChange={(e) => setNewDescription(e.target.value)}
-            ></Form.Control>
-          </Card.Text>
+          <Card.Text>{props.description}</Card.Text>
         </Card.Body>
         <Card.Text>
-          <Button
-            variant='warning'
-            size='sm'
-            onClick={() => handlePlantEdit(props)}
-          >
+          <Button variant='warning' size='sm' onClick={() => setOpen(true)}>
             Edit
           </Button>
           <Button
             variant='danger'
             size='sm'
             type='submit'
-            onClick={() => handlePlantDelete(props.plant_id)}
+            onClick={() => handleDelete(props.plant_id)}
           >
             Delete
           </Button>
         </Card.Text>
       </Card>
-    </Form>
+      <CardEditModal show={open} onHide={() => setOpen(false)} data={props} />
+    </Fragment>
   );
 };
 
